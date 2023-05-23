@@ -8,6 +8,7 @@ import { withCurrency, WithCurrencyProps } from '../locale';
 
 export interface OrderSummaryItemProps {
     id: string | number;
+    productId?: number;
     amount: number;
     quantity: number;
     name: string;
@@ -15,6 +16,7 @@ export interface OrderSummaryItemProps {
     image?: ReactNode;
     description?: ReactNode;
     productOptions?: OrderSummaryItemOption[];
+    checkoutDescription?: string | null;
 }
 
 export interface OrderSummaryItemOption {
@@ -63,7 +65,7 @@ const getCustomDescription = (name: string, amount: number, currencyService: any
     }
     return '';
 };
-const OrderSummaryItem: FunctionComponent<OrderSummaryItemProps & WithCurrencyProps> = ({
+const OrderSummaryItem: FunctionComponent<OrderSummaryItemProps & WithCurrencyProps & {checkoutDescriptionsLoading: boolean}> = ({
     amount,
     amountAfterDiscount,
     image,
@@ -71,7 +73,9 @@ const OrderSummaryItem: FunctionComponent<OrderSummaryItemProps & WithCurrencyPr
     productOptions,
     quantity,
     description,
-    currency
+    currency,
+    checkoutDescription,
+    checkoutDescriptionsLoading
 }) => {
     const isSubscription = () => {
         return productOptions && productOptions[0] && productOptions[0].content
@@ -105,7 +109,9 @@ const OrderSummaryItem: FunctionComponent<OrderSummaryItemProps & WithCurrencyPr
                                 { option.content }
                             </li>
                         ) }
-                        <li className="product-option custom-description">{ getCustomDescription(name, amount, currency) }</li>
+                        <li className={`product-option custom-description ${checkoutDescriptionsLoading ? "loading" : ""}`}>
+                            { checkoutDescriptionsLoading ? (<><span></span><span></span><span></span></>) : checkoutDescription }
+                        </li>
                     </ul>
                     { description && <div
                         className="product-description optimizedCheckout-contentSecondary"

@@ -1,6 +1,9 @@
 // =============================================================================
-// GLADEYE UPDATES
+// MODALS
 // =============================================================================
 
-@import "checklistGladeyeUpdates";
-@import "modal";
+@if $exportCSS--modal { // 1
+    html body.has-activeModal .modal-body {
+        overflow: auto;
+    }
+}

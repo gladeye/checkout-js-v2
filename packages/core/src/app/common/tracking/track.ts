@@ -1,3 +1,5 @@
+import countryDialingCodes from '../utility/countryDialingCodes';
+
 declare global {
   interface Window {
     dataLayer: any[];
@@ -20,11 +22,35 @@ interface GTMUser {
   email?: string;
   first_name?: string;
   last_name?: string;
-  phone?: number | string;
+  phone?: Array<number | string>;
   city?: string[];
   state_region?: string[];
   zip_code?: string[];
   country?: string[];
+}
+
+function transformPhoneNumber(phone: string | number, countryCode: string): string {
+  // convert to number to remove any leading 0s
+  const phoneOnlyNumbers = phone.toString().replace(/\D/g, '');
+  // country dialing code
+  const dialingCode = countryDialingCodes[countryCode];
+  // check if already has country dialing code (if phone starts with + or 00)
+  const hasDialingCode =
+    phone.toString().startsWith('+') ||
+    phone.toString().startsWith('00') ||
+    phone.toString().startsWith(dialingCode);
+  // prefix
+  let prefix = '';
+
+  if (!hasDialingCode) {
+    prefix = dialingCode;
+  }
+
+  // add prefix (if exists) to phone
+  const phoneWithCountryCode = `${prefix.replace(/\D/g, '')}${phoneOnlyNumbers}`;
+
+  // return
+  return phoneWithCountryCode;
 }
 
 function transformUserData(user: Customer): GTMUser {
@@ -33,6 +59,7 @@ function transformUserData(user: Customer): GTMUser {
     const stateRegion: Set<string> = new Set();
     const zipCode: Set<string> = new Set();
     const country: Set<string> = new Set();
+    const phone: Set<string> = new Set();
 
     if (user.addresses) {
       for (const address of user.addresses) {
@@ -40,26 +67,31 @@ function transformUserData(user: Customer): GTMUser {
         const isUKCountry = address.countryCode === 'GB';
 
         if (address.city !== '') {
-          city.add(address.city.toLowerCase().replace(" ", ""));
+          city.add(address.city.toLowerCase().replace(' ', ''));
         }
 
         if (address.stateOrProvince !== '') {
           // convert state to ANSI abbreviation code if in US and abbreviation code it exists
-          const stateOrProvince = address.stateOrProvince.toLowerCase()
-          const stateOrProvinceAbbreviation = isUSCountry && address.stateOrProvinceCode.toLowerCase()
+          const stateOrProvince = address.stateOrProvince.toLowerCase();
+          const stateOrProvinceAbbreviation =
+            isUSCountry && address.stateOrProvinceCode.toLowerCase();
 
-          stateRegion.add(stateOrProvinceAbbreviation || stateOrProvince.replace(" ", ""));
+          stateRegion.add(stateOrProvinceAbbreviation || stateOrProvince.replace(' ', ''));
         }
 
         if (address.postalCode !== '') {
-          const postalCode = address.postalCode.toLowerCase().replace(" ", "").replace("-","")
+          const postalCode = address.postalCode.toLowerCase().replace(' ', '').replace('-', '');
           const firstFiveDigits = postalCode.substring(0, 5);
 
           zipCode.add(isUSCountry || isUKCountry ? firstFiveDigits : postalCode);
         }
-        
+
         if (address.countryCode !== '') {
-          country.add(address.countryCode.toLowerCase().replace(" ", ""));
+          country.add(address.countryCode.toLowerCase().replace(' ', ''));
+        }
+
+        if (address.phone !== '' && address.countryCode !== '') {
+          phone.add(transformPhoneNumber(address.phone, address.countryCode));
         }
       }
     }
@@ -68,7 +100,7 @@ function transformUserData(user: Customer): GTMUser {
       user_id: user.id ?? user.customerId,
       email: user.email,
       is_guest: false,
-      phone: user.phoneNumber || user.addresses?.[0]?.phone,
+      phone: Array.from(phone),
       first_name: user.firstName,
       last_name: user.lastName,
       city: Array.from(city),
@@ -76,11 +108,11 @@ function transformUserData(user: Customer): GTMUser {
       zip_code: Array.from(zipCode),
       country: Array.from(country),
     };
-  } else {
-    const returnData = user?.email ? { is_guest: true, email: user.email } : { is_guest: true };
-
-    return returnData;
   }
+
+  const returnData = user?.email ? { is_guest: true, email: user.email } : { is_guest: true };
+
+  return returnData;
 }
 
 export function track(data: any) {
@@ -206,7 +238,7 @@ interface UserChangeData {
 
 export function trackUserChange(user: Customer) {
   const data: UserChangeData = {
-    event: "logged_in_user_change",
+    event: 'logged_in_user_change',
     user: transformUserData(user),
   };
 
@@ -242,10 +274,7 @@ interface SignUpData {
   user: GTMUser;
 }
 
-export function trackSignUp(
-  location: string,
-  user: Customer
-) {
+export function trackSignUp(location: string, user: Customer) {
   const data: SignUpData = {
     event: 'sign_up',
     event_info: {

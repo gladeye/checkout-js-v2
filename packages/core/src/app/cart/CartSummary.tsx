@@ -14,6 +14,7 @@ import withRedeemable from './withRedeemable';
 export type WithCheckoutCartSummaryProps = {
     checkout: Checkout;
     cartUrl: string;
+    isUpdatedCartSummayModal: boolean;
     storeCurrency: StoreCurrency;
     shopperCurrency: ShopperCurrency;
     storeCreditAmount?: number;
@@ -30,4 +31,4 @@ const CartSummary: FunctionComponent<WithCheckoutCartSummaryProps> = ({ cartUrl,
     });
 };
 
-export default withCheckout(mapToCartSummaryProps)(withRecurly(({hasSubscription}) => ({hasSubscription}) )(CartSummary));
+export default withCheckout(mapToCartSummaryProps)(withRecurly(({hasSubscription}: {hasSubscription: any}) => ({hasSubscription}) )(CartSummary));

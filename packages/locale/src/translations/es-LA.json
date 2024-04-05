@@ -84,6 +84,7 @@
             "cancel_action": "Cancelar",
             "close_action": "Cerrar",
             "continue_action": "Continúa",
+            "change_action": "Cambiar",
             "edit_action": "Editar",
             "delete_action": "Eliminar",
             "error_heading": "Se produjo un error",
@@ -162,7 +163,7 @@
             "error_server": "No pudimos enviarte un enlace de inicio de sesión. Vuelve a intentarlo.",
             "error_not_found": "El correo electrónico ingresado no está asociado a una cuenta. Inténtalo con otro correo electrónico.",
             "sent_header": "Revisa tu bandeja de entrada",
-            "sent_text": "Tu enlace de inicio de sesión está en camino a <strong>{email}</strong>. Este enlace caduca en 15 minutos. Si no lo ves, controla tu carpeta de correo no deseado.",
+            "sent_text": "Si la dirección de correo electrónico ingresada está asociada con esta tienda, pronto recibirás un enlace de inicio de sesión. Este enlace caduca en 15 minutos. Si no encuentras el correo, revisa tu carpeta de correo no deseado.",
             "text": "Ingresa la dirección de correo electrónico asociada a tu cuenta. Te enviaremos un enlace de inicio de sesión.",
             "header": "Enlace de inicio de sesión en la cuenta",
             "header_with_email": "Confirma tu dirección de correo electrónico",
@@ -198,7 +199,13 @@
                 "label": "Número de cuenta",
                 "is_required": "El número de cuenta es obligatorio",
                 "only_numbers": "El número de cuenta debe contener únicamente números",
-                "length": "El número de cuenta debe tener, al menos, 8 dígitos"
+                "length": "El número de cuenta debe tener, al menos, 4 dígitos",
+                "length_max": "El número de cuenta debe tener, al menos, 17 dígitos"
+            },
+            "bluesnap_direct_iban": {
+                "label": "IBAN",
+                "is_required": "El IBAN es obligatorio",
+                "length": "El IBAN debe tener al menos 8 dígitos"
             },
             "bluesnap_direct_routing_number": {
                 "label": "Número de ruteo",
@@ -210,8 +217,13 @@
                 "label": "Tipo de cuenta",
                 "is_required": "El tipo de cuenta es obligatorio"
             },
+            "ideal": {
+                "label": "Tu banco"
+            },
             "bluesnap_direct_permission": "Autorizo esta transacción con cheque electrónico (ACH/ECP) y acepto este débito en mi cuenta.",
+            "bluesnap_direct_sepa_mandate_disclaimer": "Al firmar este formulario de mandato, autorizas a (A) {creditorName} a enviar instrucciones a tu banco para que haga el cargo en tu cuenta y (B) a tu banco para que haga el cargo en tu cuenta de acuerdo con las instrucciones de {creditorName}. Como parte de tus derechos, tienes derecho a recibir un reembolso de tu banco según los términos y condiciones de tu contrato celebrado con tu banco. El reembolso deberá solicitarse dentro de un plazo de 8 semanas contadas a partir de la fecha en que se hizo el cargo a tu cuenta.",
             "bluesnap_direct_electronic_check_label": "Cheque electrónico (ACH/ECP)",
+            "bluesnap_direct_sepa_direct_debit": "SEPA Direct Debit",
             "bluesnap_direct_local_bank_transfer_label": "Transferencia bancaria local",
             "bolt_benefit_1": "Compra cientos de marcas con un inicio de sesión sin requerir una contraseña",
             "bolt_benefit_2": "Procesar el pago utilizando los detalles de pago y envío guardados",
@@ -308,10 +320,12 @@
             "ideal_bic_required": "Debes seleccionar un emisor para realizar el pedido",
             "instrument_text": "Almacenamiento de tarjetas de crédito",
             "instrument_add_card_action": "Usar una tarjeta diferente",
+            "instrument_account_number_ending": "Número de cuenta que termina en: {accountNumber}",
             "instrument_default_ending_in_text": "Tarjeta terminada en {endingIn}",
             "instrument_ending_in_text": "{cardTitle} que termina en {endingIn}",
             "instrument_expired_text": "Vencida el {expiryDate}",
             "instrument_expires_text": "Vence el {expiryDate}",
+            "instrument_issuer": "Emisor",
             "instrument_manage_button": "manejar",
             "instrument_manage_modal_confirmation_action": "Sí, eliminar",
             "instrument_manage_modal_confirmation_label": "¿Estás seguro de que deseas eliminar este método de pago guardado?",
@@ -384,6 +398,7 @@
                 "incorrect_zip": "Tu dirección de facturación no pudo verificarse. Revísala y vuelve a intentarlo.",
                 "insufficient_funds": "El pago fue rechazado. Póngase en contacto con su banco.",
                 "invalid_address": "Tu dirección de facturación no pudo verificarse. Revísala y vuelve a intentarlo.",
+                "instrument_declined": "Nos gustaría informarte que el importe total de tu pedido inicialmente confirmado con PayPal fue ajustado. Esta modificación se realizó conforme a las normas y las garantías establecidas en la segunda directiva sobre servicios de pago (DSP2). Para poder completar tu pedido, te pedimos que confirmes el nuevo importe haciendo clic en el botón Pago con PayPal que se ubica en la parte inferior de la página.",
                 "invalid_amount": "Hubo un error al procesar su pago. Inténtelo de nuevo o póngase en contacto con nosotros.",
                 "invalid_authorization_code": "Hubo un error al procesar su pago. Inténtelo de nuevo o póngase en contacto con nosotros.",
                 "invalid_create_instrument_request": "No se puede procesar el pago porque se proporcionaron datos no válidos con la transacción.",
@@ -433,12 +448,16 @@
                 "voided_transaction": "Su pago no pudo ser procesado debido a que la transacción ya se anuló. Inténtelo de nuevo o póngase en contacto con nosotros."
             },
             "ratepay": {
+                "payment_method_title": "Pagar por factura",
                 "phone_country_code": "Código del país",
                 "phone_number": "Número telefónico",
                 "birth_date": "Fecha de nacimiento",
                 "errors": {
                     "isRequired": "{fieldName} es un campo obligatorio",
-                    "isInvalid": "{fieldName} no es válido"
+                    "isInvalid": "{fieldName} no es válido",
+                    "paymentSourceInfoCannotBeVerified": "No se pudo validar la combinación de tu nombre y dirección. Corrige tus datos e inténtalo de nuevo. Puedes encontrar más información en la <a href='https://www.ratepay.com/en/ratepay-data-privacy-statement/' target='blank'>Declaración de privacidad de los datos de Ratepay</a> o ponerte en contacto con Ratepay a través de este <a href='https://www.ratepay.com/en/contact/' target='blank'>formulario de contacto.</a>",
+                    "paymentSourceDeclinedByProcessor": "No es posible utilizar el método de pago seleccionado. Esta decisión se basa en el procesamiento automatizado de datos. Puedes encontrar más información en la <a href='https://www.ratepay.com/en/ratepay-data-privacy-statement/' target='blank'>Declaración de privacidad de los datos de Ratepay</a> o ponerte en contacto con Ratepay a través de este <a href='https://www.ratepay.com/en/contact/' target='blank'>formulario de contacto.</a>",
+                    "itemCategoryNotSupportedByPaymentSource": "Los artículos digitales no son compatibles con un método determinado"
                 }
             }
         },
@@ -531,6 +550,9 @@
                 "adyenv3": {
                     "boletobancario": "Ticket del Boleto Bancário"
                 },
+                "bluesnapdirect": {
+                    "sepa_direct_debit": "Referencia de mandato de débito directo SEPA: {mandate}"
+                },
                 "checkoutcom": {
                     "boleto": "Ticket del Boleto Bancário",
                     "oxxo": "Ticket de OXXO",
@@ -558,8 +580,6 @@
             "order_pending_review_text": "Ya se nos envió tu pedido, pero actualmente estamos en espera del pago. Una vez que lo recibamos, se completará tu pedido. Si ya proporcionaste los detalles del pago, procesaremos tu pedido manualmente y te enviaremos un correo electrónico cuando esté completo.",
             "order_pending_status_text": "Hemos recibido tu pedido y estamos procesando tu pago. Una vez que se haya verificado el pago, se completará tu pedido. Te enviaremos un correo electrónico cuando se haya completado. Ten en cuenta que este proceso puede tardar unos minutos, dependiendo de los tiempos de procesamiento del método elegido. Si tienes alguna pregunta sobre tu compra, envíanos un correo electrónico a <a href=\"mailto:{supportEmail}?Subject=Order {orderNumber}\" target=\"_top\">{supportEmail}</a>.",
             "order_incomplete_status_text": "Hemos recibido tu pedido y tu pago. Nuestro sistema está procesando tu pedido. Ten en cuenta que el procesamiento puede tardar unos minutos. Si tienes alguna pregunta sobre tu compra, envíanos un correo electrónico a <a href=\"mailto:{supportEmail}?Subject=Order {orderNumber}\" target=\"_top\">{supportEmail}</a>.",
-            "order_incomplete_status_heading": "Lo sentimos, ocurrió un error con el pago de este pedido.",
-            "order_incomplete_status_with_unsuccessful_payment_text": "Tu pedido está incompleto porque el pago no se realizó correctamente. Para obtener ayuda con tu compra, envíanos un correo electrónico a <a href=\"mailto:{supportEmail}?Subject=Order {orderNumber}\" target=\"_top\">{supportEmail}</a>.",
             "order_with_downloadable_digital_items_text": "Puedes descargar tus compras digitales haciendo clic en los enlaces de esta página o iniciando sesión en tu cuenta en cualquier momento. También hay un enlace de descarga en tu correo electrónico de confirmación, que debería llegarte en breve.",
             "order_with_support_number_text": "Se enviará un correo electrónico con información sobre tu compra. Si tienes alguna pregunta sobre tu compra, envíanos un correo electrónico a <a href=\"mailto:{supportEmail}?Subject=Order {orderNumber}\" target=\"_top\">{supportEmail}</a> o llámanos al <a href=\"tel://{supportPhoneNumber}\">{supportPhoneNumber}</a>.",
             "order_without_downloadable_digital_items_text": "Una vez que recibamos tu pago, te enviaremos un correo electrónico de confirmación con un enlace para descargar tus compras digitales.",

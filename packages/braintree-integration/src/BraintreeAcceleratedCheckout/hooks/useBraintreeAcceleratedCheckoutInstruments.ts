@@ -2,9 +2,11 @@ import { CardInstrument } from '@bigcommerce/checkout-sdk';
 import { useState } from 'react';
 
 import { useCheckout, usePaymentFormContext } from '@bigcommerce/checkout/payment-integration-api';
+import { isPayPalFastlaneCustomer } from '@bigcommerce/checkout/paypal-fastlane-integration';
 
 export const useBraintreeAcceleratedCheckoutInstruments = () => {
     const [isAddingNewInstrument, setIsAddingNewInstrument] = useState<boolean>(false);
+    const [fastlaneSelectedInstrument, setFastlaneSelectedInstrument] = useState<CardInstrument>();
     const [selectedInstrumentId, setSelectedInstrumentId] = useState<string | undefined>();
     const state = useCheckout().checkoutState.data;
 
@@ -12,8 +14,12 @@ export const useBraintreeAcceleratedCheckoutInstruments = () => {
     const paymentProviderCustomer = getPaymentProviderCustomer();
     const { paymentForm } = usePaymentFormContext();
 
-    const paypalConnectInstruments = paymentProviderCustomer?.instruments || [];
-    const selectedInstrument = paypalConnectInstruments.find(
+    const paypalFastlaneCustomer = isPayPalFastlaneCustomer(paymentProviderCustomer)
+        ? paymentProviderCustomer
+        : {};
+
+    const paypalFastlaneInstruments = paypalFastlaneCustomer.instruments || [];
+    const selectedInstrument = paypalFastlaneInstruments.find(
         (instrument: CardInstrument) => instrument.bigpayToken === selectedInstrumentId,
     );
 
@@ -29,11 +35,18 @@ export const useBraintreeAcceleratedCheckoutInstruments = () => {
         paymentForm.setFieldValue('instrumentId', id);
     };
 
+    const handlePaypalFastlaneSelectInstrument = (instrument: CardInstrument): void => {
+        setFastlaneSelectedInstrument(instrument);
+        paymentForm.setFieldValue('instrumentId', instrument.bigpayToken);
+    };
+
     return {
-        instruments: paypalConnectInstruments,
+        fastlaneSelectedInstrument,
+        instruments: paypalFastlaneInstruments,
         isAddingNewInstrument,
         handleUseNewInstrument,
         handleSelectInstrument,
+        handlePaypalFastlaneSelectInstrument,
         selectedInstrument,
     };
 };

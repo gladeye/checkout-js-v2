@@ -84,6 +84,7 @@
             "cancel_action": "Annullera",
             "close_action": "Stäng",
             "continue_action": "Fortsätt",
+            "change_action": "Ändra",
             "edit_action": "Redigera",
             "delete_action": "Radera",
             "error_heading": "Något gick fel",
@@ -162,7 +163,7 @@
             "error_server": "Vi kunde inte skicka en inloggningslänk till dig. Försök igen.",
             "error_not_found": "Den angivna e-postadressen är inte kopplad till något konto. Försök med en annan e-postadress.",
             "sent_header": "Kolla din inkorg",
-            "sent_text": "Din inloggningslänk har skickats till <strong>{email}</strong>. Denna länk upphör att gälla om 15 minuter. Om du inte hittar den, titta i din skräppostmapp.",
+            "sent_text": "Om den angivna e-postadressen är kopplad till den här butiken kommer du att få en inloggningslänk inom kort. Denna länk upphör att gälla om 15 minuter. Kontrollera skräppostmappen om du inte hittar den.",
             "text": "Ange e-postadressen som är kopplad till ditt konto. Vi skickar en inloggningslänk till dig.",
             "header": "Inloggningslänk för konto",
             "header_with_email": "Bekräfta din e-postadress",
@@ -198,7 +199,13 @@
                 "label": "Kontonummer",
                 "is_required": "Kontonummer krävs",
                 "only_numbers": "Kontonumret får endast innehålla siffror",
-                "length": "Kontonumret måste ha minst 8 siffror"
+                "length": "Kontonumret måste ha minst 4 siffror",
+                "length_max": "Kontonumret måste ha minst 17 siffror"
+            },
+            "bluesnap_direct_iban": {
+                "label": "IBAN",
+                "is_required": "IBAN krävs",
+                "length": "IBAN måste ha minst 8 siffror"
             },
             "bluesnap_direct_routing_number": {
                 "label": "Routing-nummer",
@@ -210,8 +217,13 @@
                 "label": "Kontotyp",
                 "is_required": "Kontotyp är obligatoriskt"
             },
+            "ideal": {
+                "label": "Din bank"
+            },
             "bluesnap_direct_permission": "Jag godkänner denna transaktion med Elektronisk check (ACH/ECP) och debiteringen av kontot.",
+            "bluesnap_direct_sepa_mandate_disclaimer": "Genom att underteckna denna fullmakt ger du (A) {creditorName} rätt att skicka instruktioner till din bank om att debitera ditt konto och (B) din bank rätt att debitera ditt konto i enlighet med instruktionerna från {creditorName}. Som en del av dina rättigheter har du rätt till återbetalning från din bank enligt villkoren i ditt avtal med din bank. Återbetalning måste krävas inom åtta veckor från det datum då ditt konto debiterades.",
             "bluesnap_direct_electronic_check_label": "Elektronisk check (ACH/ECP)",
+            "bluesnap_direct_sepa_direct_debit": "SEPA direktdebitering",
             "bluesnap_direct_local_bank_transfer_label": "Lokal banköverföring",
             "bolt_benefit_1": "Shoppa hundratals varumärken med inloggning utan lösenord",
             "bolt_benefit_2": "Checka ut med sparade betalnings- och fraktuppgifter",
@@ -308,10 +320,12 @@
             "ideal_bic_required": "Du måste välja en utfärdare för att genomföra beställningen",
             "instrument_text": "Lagrade kreditkort",
             "instrument_add_card_action": "Använd ett annat kort",
+            "instrument_account_number_ending": "Kontonummer som slutar på: {accountNumber}",
             "instrument_default_ending_in_text": "Kort som slutar med {endingIn}",
             "instrument_ending_in_text": "{cardTitle} som slutar med {endingIn}",
             "instrument_expired_text": "Upphörde att gälla {expiryDate}",
             "instrument_expires_text": "Upphör att gälla {expiryDate}",
+            "instrument_issuer": "Utfärdare",
             "instrument_manage_button": "hantera",
             "instrument_manage_modal_confirmation_action": "Ja, radera",
             "instrument_manage_modal_confirmation_label": "Är du säker på att du vill radera den här lagrade betalningsmetoden?",
@@ -384,6 +398,7 @@
                 "incorrect_zip": "Din faktureringsadress kunde inte verifieras. Kontrollera din faktureringsadress och försök igen.",
                 "insufficient_funds": "Betalningen nekades. Kontakta din bank.",
                 "invalid_address": "Din faktureringsadress kunde inte verifieras. Kontrollera din faktureringsadress och försök igen.",
+                "instrument_declined": "Vi vill informera dig om att det totala beloppet för din beställning har justerats från det ursprungligen bekräftade beloppet med PayPal. Denna ändring är i enlighet med de regler och skyddsåtgärder som anges i det andra betaltjänstdirektivet (PSD2). För att kunna slutföra din beställning ber vi dig bekräfta den nya totalsumman genom att klicka på knappen \"PayPal Checkout\" längst ned på sidan.",
                 "invalid_amount": "Det uppstod ett fel när betalningen bearbetades. Försök igen eller kontakta oss.",
                 "invalid_authorization_code": "Det uppstod ett fel när betalningen bearbetades. Försök igen eller kontakta oss.",
                 "invalid_create_instrument_request": "Det gick inte att bearbeta betalningen eftersom att ogiltigt e-postmeddelande levererades med transaktionen.",
@@ -433,12 +448,16 @@
                 "voided_transaction": "Det gick inte att bearbeta din betalning eftersom transaktionen redan har annullerats. Försök igen eller kontakta oss."
             },
             "ratepay": {
+                "payment_method_title": "Betala vid fakturering",
                 "phone_country_code": "Landskod",
                 "phone_number": "Telefonnummer",
                 "birth_date": "Födelsedatum",
                 "errors": {
                     "isRequired": "{fieldName} måste anges",
-                    "isInvalid": "{fieldName} är ogiltig(t)"
+                    "isInvalid": "{fieldName} är ogiltig(t)",
+                    "paymentSourceInfoCannotBeVerified": "Kombinationen av ditt namn och din adress kunde inte valideras. Korrigera dina uppgifter och försök igen. Du hittar mer information i <a href='https://www.ratepay.com/en/ratepay-data-privacy-statement/' target='blank'>Ratepays integritetspolicy</a>. Du kan också kontakta Ratepay via det här <a href='https://www.ratepay.com/en/contact/' target='blank'>kontaktformuläret</a>.",
+                    "paymentSourceDeclinedByProcessor": "Det är inte möjligt att använda den valda betalningsmetoden. Det här beslutet är baserat på automatiserad databehandling. Du hittar mer information i <a href='https://www.ratepay.com/en/ratepay-data-privacy-statement/' target='blank'>Ratepays integritetspolicy</a>. Du kan också kontakta Ratepay via det här <a href='https://www.ratepay.com/en/contact/' target='blank'>kontaktformuläret</a>.",
+                    "itemCategoryNotSupportedByPaymentSource": "Digitala artiklar stöds inte för en angiven metod"
                 }
             }
         },
@@ -531,6 +550,9 @@
                 "adyenv3": {
                     "boletobancario": "Boleto Bancário-ticket"
                 },
+                "bluesnapdirect": {
+                    "sepa_direct_debit": "Referens för SEPA-direktdebiteringsfullmakt: {mandate}"
+                },
                 "checkoutcom": {
                     "boleto": "Boleto Bancário-ticket",
                     "oxxo": "OXXO-ticket",
@@ -558,8 +580,6 @@
             "order_pending_review_text": "Din beställning har skickats till oss, men du har inte betalat än. Din beställning slutförs när vi tar emot betalningen. Om du redan har angett betalningsuppgifter kommer vi att behandla din beställning manuellt och skicka ett e-postmeddelande till dig när den är slutförd.",
             "order_pending_status_text": "Vi har fått din beställning och behandlar din betalning. Din beställning slutförs när betalningen har verifierats. Vi skickar ett e-postmeddelande till dig när det är klart. Observera att den här processen kan ta några minuter beroende på behandlingstiderna för din valda metod. Om du har några frågor om ditt köp kan du skicka ett meddelande till oss på <a href=\"mailto:{supportEmail}?Subject=Order {orderNumber}\" target=\"_top\">{supportEmail}</a>.",
             "order_incomplete_status_text": "Vi har fått din beställning och betalning. Din beställning behandlas nu av vårt system. Observera att behandlingen kan ta några minuter. Om du har några frågor om ditt köp kan du skicka ett meddelande till oss på <a href=\"mailto:{supportEmail}?Subject=Order {orderNumber}\" target=\"_top\">{supportEmail}</a>.",
-            "order_incomplete_status_heading": "Tyvärr misslyckades betalningen för denna beställning.",
-            "order_incomplete_status_with_unsuccessful_payment_text": "Din beställning är ofullständig eftersom betalningen misslyckades. Om du behöver hjälp med ditt köp kan du mejla oss på <a href=\"mailto:{supportEmail}?Subject=Order {orderNumber}\" target=\"_top\">{supportEmail}</a>.",
             "order_with_downloadable_digital_items_text": "Du kan ladda ner dina digitala köp genom att klicka på länkarna på den här sidan, eller genom att logga in på ditt konto när som helst. Det finns också en nedladdningslänk i din e-postbekräftelse, som du bör få inom kort.",
             "order_with_support_number_text": "Ett e-postmeddelande kommer att skickas med information om ditt köp. Om du har några frågor om ditt köp kan du skicka ett meddelande till oss på <a href=\"mailto:{supportEmail}?Subject=Order {orderNumber}\" target=\"_top\">{supportEmail}</a> eller ringa oss på <a href=\"tel://{supportPhoneNumber}\">{supportPhoneNumber}</a>.",
             "order_without_downloadable_digital_items_text": "När vi har fått din betalning skickar vi ett bekräftelsemeddelande med en länk för att ladda ner dina digitala köp.",

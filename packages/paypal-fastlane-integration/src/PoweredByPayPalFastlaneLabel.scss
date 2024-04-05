@@ -1,0 +1,21 @@
+.powered-by-paypal-fastlane {
+    padding: 0.5rem 0 0.5rem 0;
+    height: 2rem;
+    width: 7.4rem;
+
+    & > .icon {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.powered-by-paypal-connect-label {
+    font-size: 0.77rem;
+    margin: 0.77rem 0 0;
+
+    & > .icon {
+        margin: 0 0.5em;
+        width: 4.24rem;
+        height: 0.77rem;
+    }
+}

@@ -3,7 +3,7 @@ import React, { FunctionComponent, memo } from 'react';
 
 import { preventDefault } from '@bigcommerce/checkout/dom-utils';
 import { TranslatedString } from '@bigcommerce/checkout/locale';
-import { PoweredByPaypalConnectLabel, usePayPalConnectAddress } from '@bigcommerce/checkout/paypal-connect-integration';
+import { PoweredByPayPalFastlaneLabel, usePayPalFastlaneAddress } from '@bigcommerce/checkout/paypal-fastlane-integration';
 
 import { DropdownTrigger } from '../ui/dropdown';
 
@@ -56,7 +56,8 @@ const AddressSelect = ({
     onSelectAddress,
     onUseNewAddress,
 }: AddressSelectProps) => {
-    const { shouldShowPayPalConnectLabel } = usePayPalConnectAddress();
+    const { shouldShowPayPalConnectLabel, shouldShowPayPalFastlaneLabel } = usePayPalFastlaneAddress();
+    const shouldShowPayPalIcon = shouldShowPayPalConnectLabel || shouldShowPayPalFastlaneLabel;
 
     const handleSelectAddress = (newAddress: Address) => {
         if (!isEqualAddress(selectedAddress, newAddress)) {
@@ -90,7 +91,7 @@ const AddressSelect = ({
                 </DropdownTrigger>
             </div>
 
-            {shouldShowPayPalConnectLabel && <PoweredByPaypalConnectLabel />}
+            {shouldShowPayPalIcon && <PoweredByPayPalFastlaneLabel />}
         </div>
     );
 }

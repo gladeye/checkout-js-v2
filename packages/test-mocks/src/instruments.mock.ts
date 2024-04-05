@@ -91,6 +91,27 @@ export function getInstruments(): PaymentInstrument[] {
             method: 'ach',
             type: 'bank',
         },
+        {
+            bigpayToken: '12341414',
+            provider: 'bluesnap',
+            accountNumber: '0001',
+            issuer: '011000016',
+            trustedShippingAddress: false,
+            defaultInstrument: false,
+            method: 'ecp',
+            type: 'bank',
+        },
+        {
+            iban: 'undefined',
+            bigpayToken: '12341414',
+            provider: 'bluesnap',
+            accountNumber: 'DE133123xx111',
+            issuer: '011000017',
+            trustedShippingAddress: false,
+            defaultInstrument: false,
+            method: 'sepa_direct_debit',
+            type: 'bank',
+        },
     ];
 }
 

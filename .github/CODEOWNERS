@@ -11,6 +11,9 @@
 /packages/test-framework @bigcommerce/team-checkout
 /packages/workspace-tools @bigcommerce/team-checkout
 
+## Shared
+package.json @bigcommerce/team-checkout @bigcommerce/team-integrations @bigcommerce/team-paypal
+package-lock.json @bigcommerce/team-checkout @bigcommerce/team-integrations @bigcommerce/team-paypal
 
 ## Payment integrations team
 
@@ -18,7 +21,6 @@
 /packages/core/payment/paymentMethod/AffirmPaymentMethod.tsx @bigcommerce/team-integrations
 /packages/core/payment/paymentMethod/AmazonPaymentMethod.tsx @bigcommerce/team-integrations
 /packages/core/payment/paymentMethod/BarclayCardPaymentMethod.tsx @bigcommerce/team-integrations
-/packages/core/payment/paymentMethod/BlueSnapV2PaymentMethod.tsx @bigcommerce/team-integrations
 /packages/core/payment/paymentMethod/BoltClientPaymentMethod.tsx @bigcommerce/team-integrations
 /packages/core/payment/paymentMethod/BoltCustomForm.tsx @bigcommerce/team-integrations
 /packages/core/payment/paymentMethod/BoltCustomFormValues.ts @bigcommerce/team-integrations
@@ -44,6 +46,7 @@
 
 /packages/adyen-integration @bigcommerce/team-integrations
 /packages/bluesnap-direct-integration @bigcommerce/team-integrations
+/packages/squarev2-integration @bigcommerce/team-integrations
 /packages/td-bank-integration @bigcommerce/team-integrations
 
 
@@ -55,7 +58,8 @@
 
 /packages/braintree-integration @bigcommerce/team-paypal
 /packages/paypal-commerce-integration @bigcommerce/team-paypal
-/packages/paypal-connect-integration @bigcommerce/team-paypal
+/packages/paypal-fastlane-integration @bigcommerce/team-paypal
+/packages/paypal-express-integration @bigcommerce/team-paypal
 
 ## Shared
 /packages/core/customer/checkoutSuggestion @bigcommerce/team-checkout @bigcommerce/team-integrations @bigcommerce/team-paypal
@@ -65,4 +69,4 @@
 /packages/google-pay-integration @bigcommerce/team-checkout @bigcommerce/team-integrations @bigcommerce/team-paypal
 
 ## Localization team
-/packages/locale/src/translations @bigcommerce/team-checkout @bigcommerce/team-localization
+/packages/locale/src/translations @bigcommerce/team-checkout

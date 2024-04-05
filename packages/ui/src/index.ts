@@ -30,6 +30,7 @@ export {
     IconPaypal,
     IconPayPalConnect,
     IconPayPalConnectSmall,
+    IconPayPalFastlane,
     IconSize,
     IconHelp,
     IconLock,
@@ -60,6 +61,7 @@ export {
     IconLiteCoin,
     IconProps,
     IconShibaInu,
+    IconSepa,
     IconUsdCoin,
     IconAch,
 } from './icon';

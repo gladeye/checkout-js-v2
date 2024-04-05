@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PayPalCommerceAcceleratedCheckoutInstrumentsForm renders instruments form with provided props 1`] = `
+<div>
+  <div
+    class="paypal-commerce-fastlane-instrument"
+    data-test="paypal-commerce-fastlane-instrument-form"
+  >
+    <div>
+      <div
+        class="paypal-commerce-fastlane-instrument-details"
+      >
+        <div
+          class="cardIcon-icon cardIcon-icon--default icon icon--medium"
+        />
+        <div
+          class="instrumentSelect-card"
+          data-test="paypal-fastlane-instrument-last4"
+        >
+          <span>
+            ●●●● 
+            4321
+          </span>
+        </div>
+      </div>
+      <div
+        class="paypal-commerce-fastlane-instrument-branding"
+      />
+    </div>
+    <div
+      class="paypal-commerce-fastlane-instrument-change-action"
+    >
+      <button
+        class="button button--tertiary button--tiny optimizedCheckout-buttonSecondary"
+        data-test="paypal-commerce-fastlane-instrument-change"
+        type="button"
+      >
+        Change
+      </button>
+    </div>
+  </div>
+</div>
+`;

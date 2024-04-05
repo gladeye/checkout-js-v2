@@ -12,10 +12,8 @@ import { CheckoutContextProps } from '@bigcommerce/checkout/payment-integration-
 
 import { withCheckout } from '../../checkout';
 
-import AffirmPaymentMethod from './AffirmPaymentMethod';
 import AmazonPayV2PaymentMethod from './AmazonPayV2PaymentMethod';
 import BarclaycardPaymentMethod from './BarclaycardPaymentMethod';
-import BlueSnapV2PaymentMethod from './BlueSnapV2PaymentMethod';
 import BoltPaymentMethod from './BoltPaymentMethod';
 import BraintreeCreditCardPaymentMethod from './BraintreeCreditCardPaymentMethod';
 import CCAvenueMarsPaymentMethod from './CCAvenueMarsPaymentMethod';
@@ -25,8 +23,6 @@ import DigitalRiverPaymentMethod from './DigitalRiverPaymentMethod';
 import GooglePayPaymentMethod from './GooglePayPaymentMethod';
 import HostedCreditCardPaymentMethod from './HostedCreditCardPaymentMethod';
 import HostedPaymentMethod from './HostedPaymentMethod';
-import KlarnaPaymentMethod from './KlarnaPaymentMethod';
-import KlarnaV2PaymentMethod from './KlarnaV2PaymentMethod';
 import MasterpassPaymentMethod from './MasterpassPaymentMethod';
 import MolliePaymentMethod from './MolliePaymentMethod';
 import MonerisPaymentMethod from './MonerisPaymentMethod';
@@ -101,24 +97,8 @@ const PaymentMethodComponent: FunctionComponent<
         return <AmazonPayV2PaymentMethod {...props} />;
     }
 
-    if (method.id === PaymentMethodId.Affirm) {
-        return <AffirmPaymentMethod {...props} />;
-    }
-
-    if (method.gateway === PaymentMethodId.BlueSnapV2) {
-        return <BlueSnapV2PaymentMethod {...props} />;
-    }
-
     if (method.id === PaymentMethodId.DigitalRiver) {
         return <DigitalRiverPaymentMethod {...props} />;
-    }
-
-    if (method.gateway === PaymentMethodId.Klarna) {
-        return <KlarnaV2PaymentMethod {...props} />;
-    }
-
-    if (method.id === PaymentMethodId.Klarna && method.gateway !== PaymentMethodId.Mollie) {
-        return <KlarnaPaymentMethod {...props} />;
     }
 
     if (method.id === PaymentMethodId.CCAvenueMars) {

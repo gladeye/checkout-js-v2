@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BraintreeFastlaneInstrumentsForm renders instruments form with provided props 1`] = `
+<div>
+  <div
+    class="braintree-fastlane-instrument"
+    data-test="braintree-fastlane-instrument-form"
+  >
+    <div>
+      <div
+        class="braintree-fastlane-instrument-details"
+      >
+        <div
+          class="cardIcon-icon cardIcon-icon--default icon icon--medium"
+        />
+        <div
+          class="instrumentSelect-card"
+          data-test="braintree-fastlane-instrument-last4"
+        >
+          <span>
+            ●●●● 
+            4321
+          </span>
+        </div>
+      </div>
+      <div
+        class="braintree-fastlane-instrument-branding"
+      />
+    </div>
+    <div
+      class="braintree-fastlane-instrument-change-action"
+    >
+      <button
+        class="button button--tertiary button--tiny optimizedCheckout-buttonSecondary"
+        data-test="braintree-fastlane-instrument-change"
+        type="button"
+      >
+        Change
+      </button>
+    </div>
+  </div>
+</div>
+`;

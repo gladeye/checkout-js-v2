@@ -9,11 +9,17 @@ import { render, screen } from '@bigcommerce/checkout/test-utils';
 
 import BraintreeAcceleratedCheckoutInstrumentSelect from './BraintreeAcceleratedCheckoutInstrumentSelect';
 
-jest.mock('@bigcommerce/checkout/paypal-connect-integration', () => ({
+jest.mock('@bigcommerce/checkout/paypal-fastlane-integration', () => ({
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    PoweredByPaypalConnectLabel: jest.fn(() => (
-        <div data-test="powered-by-paypal-connect-label">PoweredByPaypalConnectLabel</div>
+    PoweredByPayPalFastlaneLabel: jest.fn(() => (
+        <div data-test="powered-by-paypal-fastlane-label">PoweredByPayPalFastlaneLabel</div>
     )),
+    usePayPalFastlaneAddress: jest.fn(() => ({
+        isPayPalFastlaneEnabled: true,
+        shouldShowPayPalFastlaneLabel: false,
+        shouldShowPayPalConnectLabel: true,
+        paypalFastlaneAddresses: [],
+    })),
 }));
 
 describe('BraintreeAcceleratedCheckoutInstrumentSelect', () => {
@@ -42,7 +48,7 @@ describe('BraintreeAcceleratedCheckoutInstrumentSelect', () => {
         expect(view).toMatchSnapshot();
     });
 
-    it('renders form to create new instrument and does not render paypal connect label under instruments select', () => {
+    it('renders form to create new instrument and does not render paypal fastlane label under instruments select', () => {
         const cardInstrument = getCardInstrument();
 
         render(
@@ -64,6 +70,6 @@ describe('BraintreeAcceleratedCheckoutInstrumentSelect', () => {
             </Formik>,
         );
 
-        expect(screen.queryByTestId('powered-by-paypal-connect-label')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('powered-by-paypal-fastlane-label')).not.toBeInTheDocument();
     });
 });

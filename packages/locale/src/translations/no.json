@@ -84,6 +84,7 @@
             "cancel_action": "Avbryt",
             "close_action": "Lukk",
             "continue_action": "Fortsett",
+            "change_action": "Endre",
             "edit_action": "Rediger",
             "delete_action": "Slett",
             "error_heading": "Noe gikk galt",
@@ -162,7 +163,7 @@
             "error_server": "Vi kunne ikke sende deg en påloggingslenke. Prøv igjen.",
             "error_not_found": "Den angitte e-posten er ikke knyttet til en konto. Prøv med en annen e-post.",
             "sent_header": "Sjekk innboksen din",
-            "sent_text": "Påloggingskoblingen din er på vei til <strong>{email}</strong> . Denne lenken utløper om 15 minutter. Hvis du ikke ser den, se søppelpostmappen.",
+            "sent_text": "Hvis den oppgitte e-postadressen er knyttet til denne butikken, mottar du snart en påloggingslenke. Denne lenken utløper om 15 minutter. Hvis du ikke ser den, sjekker du søppelpostmappen din.",
             "text": "Skriv inn e-postadressen knyttet til kontoen din. Vi sender deg en påloggingslenke.",
             "header": "Link for kontopålogging",
             "header_with_email": "Bekreft e-postadressen din",
@@ -198,7 +199,13 @@
                 "label": "Kontonummer",
                 "is_required": "Kontonummer er påkrevd",
                 "only_numbers": "Kontonummer må kun inneholde tall",
-                "length": "Kontonummer må ha minst 8 sifre"
+                "length": "Kontonummer må ha minst 4 sifre",
+                "length_max": "Kontonummer må ha minst 17 sifre"
+            },
+            "bluesnap_direct_iban": {
+                "label": "IBAN",
+                "is_required": "IBAN er påkrevd",
+                "length": "IBAN må ha minst 8 sifre"
             },
             "bluesnap_direct_routing_number": {
                 "label": "Rutenummer",
@@ -210,8 +217,13 @@
                 "label": "Kontotype",
                 "is_required": "Kontotype er påkrevd"
             },
+            "ideal": {
+                "label": "Din bank"
+            },
             "bluesnap_direct_permission": "Jeg autoriserer denne transaksjonen med elektronisk sjekk (ACH/ECP) og godtar denne debiteringen av kontoen min.",
+            "bluesnap_direct_sepa_mandate_disclaimer": "Ved å signere dette fullmaktsskjemaet gir du (A) {creditorName} fullmakt til å sende instruksjoner til banken din om å belaste kontoen din og (B) banken din fullmakt til å belaste kontoen din i samsvar med instruksjonene fra {creditorName}. Som en del av dine rettigheter har du rett til tilbakebetaling fra banken din i henhold til vilkårene i avtalen du har med banken. En tilbakebetaling må kreves innen åtte uker fra datoen da kontoen din ble debitert.",
             "bluesnap_direct_electronic_check_label": "Elektronisk sjekk (ACH/ECP)",
+            "bluesnap_direct_sepa_direct_debit": "SEPA Direct Debit",
             "bluesnap_direct_local_bank_transfer_label": "Lokal bankoverføring",
             "bolt_benefit_1": "Handle hundrevis av merker med passordløs pålogging",
             "bolt_benefit_2": "Benytt deg av lagret betalings- og leveranseinformasjon i kassen",
@@ -308,10 +320,12 @@
             "ideal_bic_required": "Du må velge en utsteder for å legge inn bestillingen",
             "instrument_text": "Lagrede kredittkort",
             "instrument_add_card_action": "Bruk et annet kort",
+            "instrument_account_number_ending": "Kontonummer som slutter på: {accountNumber}",
             "instrument_default_ending_in_text": "Kort som slutter på {endingIn}",
             "instrument_ending_in_text": "{cardTitle} som slutter på {endingIn}",
             "instrument_expired_text": "Utløpt {expiryDate}",
             "instrument_expires_text": "Utløper {expiryDate}",
+            "instrument_issuer": "Utsteder",
             "instrument_manage_button": "Administrer",
             "instrument_manage_modal_confirmation_action": "Ja, slett",
             "instrument_manage_modal_confirmation_label": "Er du sikker på at du vil slette denne lagrede betalingsmåten?",
@@ -384,6 +398,7 @@
                 "incorrect_zip": "Faktureringsadressen din kunne ikke bekreftes. Sjekk faktureringsadressedetaljene dine og prøv på nytt.",
                 "insufficient_funds": "Betalingen ble avvist. Ta kontakt med banken din.",
                 "invalid_address": "Faktureringsadressen din kunne ikke bekreftes. Sjekk faktureringsadressedetaljene dine og prøv på nytt.",
+                "instrument_declined": "Vi vil gjerne informere deg om at totalbeløpet for bestillingen din har blitt justert i forhold til det opprinnelig bekreftede beløpet hos PayPal. Denne endringen er i samsvar med regelverket og sikkerhetstiltakene i det andre betalingstjenestedirektivet (PSD2). For å fullføre bestillingen ber vi deg bekrefte den nye totalsummen ved å klikke på knappen «PayPal Checkout» nederst på siden.",
                 "invalid_amount": "Det oppsto en feil under behandling av betalingen. Vennligst prøv igjen eller kontakt oss.",
                 "invalid_authorization_code": "Det oppsto en feil under behandling av betalingen. Vennligst prøv igjen eller kontakt oss.",
                 "invalid_create_instrument_request": "Kan ikke behandle betalingen fordi ugyldige data ble oppgitt med transaksjonen.",
@@ -433,12 +448,16 @@
                 "voided_transaction": "Kunne ikke behandle betalingen din fordi transaksjonen allerede er annullert. Vennligst prøv igjen eller kontakt oss."
             },
             "ratepay": {
+                "payment_method_title": "Betal ved faktura",
                 "phone_country_code": "Landskode",
                 "phone_number": "Telefonnummer",
                 "birth_date": "Fødselsdato",
                 "errors": {
                     "isRequired": "{fieldName} er påkrevd",
-                    "isInvalid": "{fieldName} er ugyldig"
+                    "isInvalid": "{fieldName} er ugyldig",
+                    "paymentSourceInfoCannotBeVerified": "Kombinasjonen av navn og adresse kunne ikke valideres. Rett opp dataene dine, og prøv på nytt. Du finner mer informasjon i <a href='https://www.ratepay.com/en/ratepay-data-privacy-statement/' target='blank'>Ratepays personvernerklæring</a>, eller du kan kontakte Ratepay ved hjelp av dette <a href='https://www.ratepay.com/en/contact/' target='blank'>kontaktskjemaet</a>.",
+                    "paymentSourceDeclinedByProcessor": "Det er ikke mulig å bruke den valgte betalingsmåten. Denne avgjørelsen er basert på automatisert databehandling. Du finner mer informasjon i <a href='https://www.ratepay.com/en/ratepay-data-privacy-statement/' target='blank'>Ratepays personvernerklæring</a>, eller du kan kontakte Ratepay ved hjelp av dette <a href='https://www.ratepay.com/en/contact/' target='blank'>kontaktskjemaet</a>.",
+                    "itemCategoryNotSupportedByPaymentSource": "Digitale elementer støttes ikke for gitt metode"
                 }
             }
         },
@@ -531,6 +550,9 @@
                 "adyenv3": {
                     "boletobancario": "Boleto Bancário-billett"
                 },
+                "bluesnapdirect": {
+                    "sepa_direct_debit": "Referanse for SEPA-direktebelastningsfullmakt: {mandate}"
+                },
                 "checkoutcom": {
                     "boleto": "Boleto Bancário-billett",
                     "oxxo": "OXXO-billett",
@@ -558,8 +580,6 @@
             "order_pending_review_text": "Bestillingen din ble sendt til oss, men venter på betaling. Når vi mottar betalingen for bestillingen din, vil den bli fullført. Hvis du allerede har oppgitt betalingsinformasjon, vil vi behandle bestillingen din manuelt og sende deg en e-post når den er fullført.",
             "order_pending_status_text": "Vi har mottatt bestillingen din og behandler betalingen din. Når betalingen er bekreftet, vil bestillingen bli fullført. Vi sender deg en e-post når den er fullført. Vær oppmerksom på at denne prosessen kan ta noen minutter avhengig av behandlingstiden for den valgte metoden. Hvis du har spørsmål om kjøpet, kan du sende oss en e-post på <a href=\"mailto:{supportEmail}?Subject=Order {orderNumber}\" target=\"_top\">{supportEmail}</a>.",
             "order_incomplete_status_text": "Vi har mottatt din bestilling og betaling. Bestillingen din behandles nå av systemet vårt. Vær oppmerksom på at behandlingen kan ta noen minutter. Hvis du har spørsmål om kjøpet, kan du sende oss en e-post på <a href=\"mailto:{supportEmail}?Subject=Order {orderNumber}\" target=\"_top\">{supportEmail}</a>.",
-            "order_incomplete_status_heading": "Vi beklager, men betalingen for denne bestillingen mislyktes.",
-            "order_incomplete_status_with_unsuccessful_payment_text": "Bestillingen din er ufullstendig fordi betalingen mislyktes. Hvis du trenger hjelp med kjøpet, kan du sende oss en e-post på <a href=\"mailto:{supportEmail}?Subject=Order {orderNumber}\" target=\"_top\">{supportEmail}</a>.",
             "order_with_downloadable_digital_items_text": "Du kan laste ned dine digitale kjøp ved å klikke på lenkene på denne siden, eller ved å logge på kontoen din når som helst. Det er også en nedlastingslenke i bekreftelses-e-posten din, som skal komme innen kort tid.",
             "order_with_support_number_text": "En e-post sendes ut med informasjon om kjøpet ditt. Hvis du har spørsmål om kjøpet, kan du sende oss en e-post på <a href=\"mailto:{supportEmail}?Subject=Order {orderNumber}\" target=\"_top\">{supportEmail}</a> eller ringe oss på <a href=\"tel://{supportPhoneNumber}\">{supportPhoneNumber}</a>.",
             "order_without_downloadable_digital_items_text": "Når vi mottar betalingen din, sender vi en e-postbekreftelse med en lenke for å laste ned dine digitale kjøp.",

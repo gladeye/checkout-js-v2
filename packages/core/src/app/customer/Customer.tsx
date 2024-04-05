@@ -637,7 +637,6 @@ export function mapToWithCheckoutCustomerProps({
             getCart,
             getSignInEmail,
             getConfig,
-            getCart,
             isPaymentDataRequired,
         },
         errors: { getSignInError, getSignInEmailError, getCreateCustomerAccountError },
@@ -657,7 +656,6 @@ export function mapToWithCheckoutCustomerProps({
     const cart = getCart();
     const signInEmail = getSignInEmail();
     const config = getConfig();
-    const cart = getCart();
 
     if (!checkout || !config || !cart) {
         return null;

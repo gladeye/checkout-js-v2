@@ -33,7 +33,7 @@ export interface OrderSummaryPriceState {
     previousAmount?: number;
 }
 
-function getDisplayValue(amount?: number | null, zeroLabel?: ReactNode): ReactNode | number {
+function getDisplayValue(amount?: number | string | null, zeroLabel?: ReactNode): ReactNode | number {
     const notYetSetSymbol = '--';
 
     if (typeof amount === 'undefined' || amount === null) {

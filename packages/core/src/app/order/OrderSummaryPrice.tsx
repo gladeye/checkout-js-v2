@@ -16,7 +16,7 @@ import { OrderSummaryItemProps } from './OrderSummaryItem';
 
 export interface OrderSummaryPriceProps {
     label: ReactNode;
-    amount?: number | null;
+    amount?: number | string | null;
     zeroLabel?: ReactNode;
     className?: string;
     testId?: string;

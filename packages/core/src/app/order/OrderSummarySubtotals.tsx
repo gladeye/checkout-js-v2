@@ -94,7 +94,7 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
             )}
 
             <OrderSummaryPrice
-                amount={shippingAmount}
+                amount={shippingAmount || "Calculated at next step"}
                 label={<TranslatedString id="cart.shipping_text" />}
                 testId="cart-shipping"
                 zeroLabel={<TranslatedString id="cart.free_text" />}

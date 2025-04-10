@@ -230,6 +230,10 @@ interface Item {
   promotions: PromotionData[];
 }
 
+interface ItemWithDiscount extends Item {
+  discount: number | undefined; // The unit monetary discount value associated with the item
+}
+
 export interface ShippingData {
   currency?: string;
   value?: string | number;
@@ -291,7 +295,8 @@ export interface OrderData {
     shipping: number | string | undefined;
     currency: string | undefined;
     coupons: CouponData[];
-    items: Item[];
+    discount_cart: number | undefined; // The total monetary discount value associated with the cart
+    items: ItemWithDiscount[];
   };
 }
 

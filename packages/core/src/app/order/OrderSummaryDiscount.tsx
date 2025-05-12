@@ -28,7 +28,7 @@ const OrderSummaryDiscount: FunctionComponent<OrderSummaryDiscountProps> = ({
             onActionTriggered: () => code && onRemoved(code),
             actionLabel: <TranslatedString id="cart.remove_action" />,
         })}
-        amount={-1 * (amount || 0)}
+        amount={-1 * (typeof amount === "string" ? 0 : (amount || 0))}
     >
         {!!remaining && remaining > 0 && (
             <span

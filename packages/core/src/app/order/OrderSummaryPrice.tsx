@@ -16,7 +16,7 @@ import { OrderSummaryItemProps } from './OrderSummaryItem';
 
 export interface OrderSummaryPriceProps {
     label: ReactNode;
-    amount?: number | null;
+    amount?: number | string | null;
     zeroLabel?: ReactNode;
     className?: string;
     testId?: string;
@@ -33,7 +33,7 @@ export interface OrderSummaryPriceState {
     previousAmount?: number;
 }
 
-function getDisplayValue(amount?: number | null, zeroLabel?: ReactNode): ReactNode | number {
+function getDisplayValue(amount?: number | string | null, zeroLabel?: ReactNode): ReactNode | number {
     const notYetSetSymbol = '--';
 
     if (typeof amount === 'undefined' || amount === null) {

@@ -146,13 +146,18 @@ export interface PaymentSubmitButtonProps {
     isPaymentDataRequired?: boolean;
 }
 
+interface WithRecurlyProps {
+    isRecurlyInitializing?: boolean;
+    isRecurlySubmitting?: boolean;
+}
+
 interface WithCheckoutPaymentSubmitButtonProps {
     isInitializing?: boolean;
     isSubmitting?: boolean;
 }
 
 const PaymentSubmitButton: FunctionComponent<
-    PaymentSubmitButtonProps & WithCheckoutPaymentSubmitButtonProps
+    PaymentSubmitButtonProps & WithRecurlyProps & WithCheckoutPaymentSubmitButtonProps
 > = ({
     isDisabled,
     isInitializing,
@@ -165,6 +170,8 @@ const PaymentSubmitButton: FunctionComponent<
     initialisationStrategyType,
     brandName,
     isComplete,
+    isRecurlyInitializing,
+    isRecurlySubmitting,
 }) => (
     <Button
         className={
@@ -173,10 +180,10 @@ const PaymentSubmitButton: FunctionComponent<
                 : undefined
         }
         data-test="payment-submit-button"
-        disabled={isInitializing || isSubmitting || isDisabled}
+        disabled={isInitializing || isRecurlyInitializing || isSubmitting || isRecurlySubmitting || isDisabled}
         id="checkout-payment-continue"
         isFullWidth
-        isLoading={isSubmitting}
+        isLoading={isInitializing || isRecurlyInitializing || isSubmitting || isRecurlySubmitting}
         size={ButtonSize.Large}
         type="submit"
         variant={ButtonVariant.Action}
@@ -196,8 +203,8 @@ const PaymentSubmitButton: FunctionComponent<
 
 function recurlyMap({isLoadingRecurly, isSubmitting}: RecurlyContextProps): WithRecurlyProps {
     return {
-        isInitializing: isLoadingRecurly,
-        isSubmitting,
+        isRecurlyInitializing: isLoadingRecurly,
+        isRecurlySubmitting: isSubmitting,
     };
 }
 
